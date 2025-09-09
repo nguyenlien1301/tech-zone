@@ -1,0 +1,113 @@
+@use "tailwindcss/preflight";
+@use "tailwindcss/theme";
+@use "tailwindcss/utilities";
+
+@custom-variant dark (&:is(.dark *));
+
+// ✅ Custom theme với @theme
+
+@theme {
+  --breakpoint-3xl: 1600px;
+  --font-primary: var(--font-manrope);
+  --color-primary: #fcb941;
+  --color-primary-hover: #f3f4f6;
+  --color-secondary: #f97316;
+  --color-blue: rgb(44 143 255);
+  --color-yellow: #fee272;
+  --color-graySlate: #212126;
+  --color-grayDark: #1a1a1a;
+  --color-grayDarkest: #131316;
+}
+@layer base {
+  body {
+    @apply bg-gray-100 dark:bg-grayDarkest dark:text-white antialiased;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  button:disabled {
+    @apply cursor-not-allowed;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply w-full flex items-center justify-center rounded-full text-white font-semibold h-11 bg-primary;
+  }
+}
+
+@layer utilities {
+  .bgDarkMode {
+    @apply bg-white dark:bg-grayDark;
+  }
+  .borderDarkMode {
+    @apply border-gray-300 dark:border-grayDark;
+  }
+}
+
+@media screen and (max-width: 1023.98px) {
+  .course-slider {
+    justify-content: flex-start;
+    grid-auto-columns: 300px;
+    grid-auto-flow: column;
+    overflow: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding: 1rem;
+    grid-template-columns: unset;
+  }
+  .course-slider::-webkit-scrollbar {
+    display: none;
+    width: 0;
+  }
+  .course-slider > * {
+    scroll-snap-align: start;
+  }
+}
+
+.container {
+  @apply w-[1188px] max-w-full px-2.5 mx-auto;
+}
+
+/* Custom Range Slider Styles */
+.range-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fb923c;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.range-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fb923c;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.range-slider::-webkit-slider-track {
+  background: transparent;
+}
+
+.range-slider::-moz-range-track {
+  background: transparent;
+}
+
+.swiper {
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    @apply text-xl text-gray-500 transition-all;
+  }
+}
